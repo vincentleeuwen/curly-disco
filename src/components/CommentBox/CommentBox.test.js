@@ -28,4 +28,20 @@ describe('CommentBox tests', () => {
     expect(wrapper.state().comment).toEqual(newComment);
     expect(wrapper.find('textarea').prop('value')).toEqual(newComment);
   });
+
+  it('has a textarea that empties on submit', () => {
+    const newComment = 'foo';
+    // simulate change event on our textbox
+    wrapper.find('textarea').simulate('change', { target: { value: newComment }});
+    // force an update because setState() is async
+    wrapper.update();
+    // assert that the state is updated
+    expect(wrapper.find('textarea').prop('value')).toEqual(newComment);
+    // simluate form submit
+    wrapper.find('form').simulate('submit');
+    // force an update because setState() is async
+    wrapper.update();
+    // assert that textarea is empty
+    expect(wrapper.find('textarea').prop('value')).toEqual('');
+  });
 });
