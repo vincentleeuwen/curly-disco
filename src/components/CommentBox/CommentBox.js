@@ -9,9 +9,19 @@ class CommentBox extends Component {
       comment: value,
     })
   }
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    // TODO
+    // call action create to add comment to store and save the comment
+
+    this.setState({
+      comment: '',
+    });
+  }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h4>Add a comment</h4>
         <textarea value={this.state.comment} onChange={this.handleChange} />
         <div>
