@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import CommentBox from 'components/CommentBox';
 
-describe('CommentBox tests', () => {
+describe('CommentBox UI', () => {
   let wrapper;
   
   beforeEach(() => {
@@ -17,24 +17,31 @@ describe('CommentBox tests', () => {
     expect(wrapper.find('textarea').length).toEqual(1);
     expect(wrapper.find('button').length).toEqual(1);
   });
+});
 
-  it('has a textarea that users can type in', () => {
-    const newComment = 'foo';
+describe('CommentBox textarea state', () => {
+  let wrapper;
+  const newComment = 'foo';
+
+  beforeEach(() => {
+    wrapper = mount(<CommentBox />);  
     // simulate change event on our textbox
     wrapper.find('textarea').simulate('change', { target: { value: newComment }});
     // force an update because setState() is async
     wrapper.update();
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
+  });
+  
+  it('has a textarea that users can type in', () => {
     // assert that the state is updated
     expect(wrapper.state().comment).toEqual(newComment);
     expect(wrapper.find('textarea').prop('value')).toEqual(newComment);
   });
 
   it('has a textarea that empties on submit', () => {
-    const newComment = 'foo';
-    // simulate change event on our textbox
-    wrapper.find('textarea').simulate('change', { target: { value: newComment }});
-    // force an update because setState() is async
-    wrapper.update();
     // assert that the state is updated
     expect(wrapper.find('textarea').prop('value')).toEqual(newComment);
     // simluate form submit
