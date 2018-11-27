@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class CommentList extends Component {
   render() {
-    const { comments } = this.props.store;
+    const { comments } = this.props;
     return (
       <div>
         <br/>
@@ -19,12 +19,12 @@ class CommentList extends Component {
 
 const mapStateToProps = state => {
   return {
-    store: state
+    comments: state.comments
   }
 }
 
 CommentList.propTypes = {
-  store: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
 }
 
 export default connect(mapStateToProps, null)(CommentList);
