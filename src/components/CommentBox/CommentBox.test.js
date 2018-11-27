@@ -1,12 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import CommentBox from 'components/CommentBox';
+import Root from 'Root';
 
 describe('CommentBox UI', () => {
   let wrapper;
   
   beforeEach(() => {
-    wrapper = mount(<CommentBox />);
+    wrapper = mount(<Root><CommentBox /></Root>);
   });
   
   afterEach(() => {
@@ -24,7 +25,7 @@ describe('CommentBox textarea state', () => {
   const newComment = 'foo';
 
   beforeEach(() => {
-    wrapper = mount(<CommentBox />);  
+    wrapper = mount(<Root><CommentBox /></Root>);
     // simulate change event on our textbox
     wrapper.find('textarea').simulate('change', { target: { value: newComment }});
     // force an update because setState() is async
@@ -37,7 +38,6 @@ describe('CommentBox textarea state', () => {
   
   it('has a textarea that users can type in', () => {
     // assert that the state is updated
-    expect(wrapper.state().comment).toEqual(newComment);
     expect(wrapper.find('textarea').prop('value')).toEqual(newComment);
   });
 
