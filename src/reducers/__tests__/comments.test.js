@@ -9,3 +9,11 @@ it('handles actions of type SAVE_COMMENT', () => {
   }
   expect(commentsReducer([], action)).toEqual([comment]);
 });
+
+it('handles action with unknown type', () => {
+  const action = {
+    type: 'UNKNOWN',
+    payload: 'foo bar'
+  }
+  expect(commentsReducer([], action)).toEqual([]);
+});
