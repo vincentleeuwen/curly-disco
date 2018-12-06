@@ -16,7 +16,7 @@ describe('CommentBox UI', () => {
 
   it('has a text area and a button', () => {
     expect(wrapper.find('textarea').length).toEqual(1);
-    expect(wrapper.find('button').length).toEqual(1);
+    expect(wrapper.find('form button').length).toEqual(1);
   });
 });
 
