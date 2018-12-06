@@ -11,7 +11,15 @@ describe('comments integration test', () => {
   beforeEach(() => {
     wrapper = mount(<Root><App /></Root>);
     // import and pass your custom axios instance to this method
-    moxios.install()
+    moxios.install();
+    moxios.stubRequest('http://jsonplaceholder.typicode.com/comments', {
+      status: 200,
+      response: [
+        { id: 1, name: 'Fred' },
+        { id: 2, name: 'Will' },
+        { id: 3, name: 'Vin' }
+      ]
+    });
   })
 
   afterEach(() => {
@@ -23,17 +31,7 @@ describe('comments integration test', () => {
     // Find the fetch comments button and click it
     wrapper.find('.fetch-comments').simulate('click');
     moxios.wait(() => {
-      const request = moxios.requests.mostRecent()
-      request.respondWith({
-        status: 200,
-        response: [
-          { id: 1, name: 'Fred' },
-          { id: 2, name: 'Will' }
-        ]
-      }).then(() => {
-        // Expect to find a list of comments
-        expect(wrapper.find('li').length).toEqual(2);
-      })
+      expect(wrapper.find('li').length).toEqual(3);
     })
   });
 });
