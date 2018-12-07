@@ -36,7 +36,8 @@ describe('comments integration test', () => {
       expect(wrapper.find('li').length).toEqual(3);
       done();
     });
-    // => Also works:
+
+    // #NOTE: This also works, but is less precise
     // ===============================================
     //
     // setTimeout(() => {
