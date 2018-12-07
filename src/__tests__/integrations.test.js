@@ -24,14 +24,26 @@ describe('comments integration test', () => {
 
   afterEach(() => {
     // import and pass your custom axios instance to this method
-    moxios.uninstall()
+    moxios.uninstall();
+    wrapper.unmount();
   })
 
-  it('can fetch a list of comments and display them', () => {
+  it('can fetch a list of comments and display them', (done) => {
     // Find the fetch comments button and click it
     wrapper.find('.fetch-comments').simulate('click');
-    moxios.wait(() => {
+    moxios.wait(() => { 
+      wrapper.update();
       expect(wrapper.find('li').length).toEqual(3);
-    })
+      done();
+    });
+    // => Also works:
+    // ===============================================
+    //
+    // setTimeout(() => {
+    //   wrapper.update();
+    //   expect(wrapper.find('li').length).toEqual(3);
+    //   done();
+    // }, 100);
+    //
   });
 });
