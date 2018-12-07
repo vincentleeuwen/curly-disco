@@ -1,4 +1,4 @@
-import { SAVE_COMMENT, FETCH_COMMENTS } from 'actions/types';
+import { SAVE_COMMENT, FETCH_COMMENTS, CHANGE_AUTH } from 'actions/types';
 import axios from 'axios';
 
 export const saveComment = comment => ({ type: SAVE_COMMENT, payload: comment });
@@ -12,3 +12,5 @@ export const fetchComments = () => {
     payload: response
   }
 };
+
+export const changeAugh = isLoggedIn => ({ type: CHANGE_AUTH, payload: isLoggedIn })
