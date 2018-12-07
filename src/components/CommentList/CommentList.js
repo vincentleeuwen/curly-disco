@@ -7,7 +7,6 @@ class CommentList extends Component {
     const { comments } = this.props;
     return (
       <div>
-        <br/>
         <h4>Comment list</h4>
         <ul>
           { comments.map((comment, i) => <li key={i}>{comment}</li>)}
