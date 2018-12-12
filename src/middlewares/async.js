@@ -1,7 +1,6 @@
 // crazy middleware syntax
 export default ({ dispatch }) => next => action => {
   // check to see if the action has a promise on its 'payload' property
-  
   // if it doesn't, send action onto next middleware
   if (!action.payload || !action.payload.then) {
     return next(action);

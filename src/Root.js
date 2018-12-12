@@ -4,13 +4,13 @@ import { createStore, applyMiddleware } from 'redux';
 import PropTypes from 'prop-types';
 // import reduxPromise from 'redux-promise';
 import reducers from 'reducers';
-import customReduxPromise from 'middlewares/async';
+import async from 'middlewares/async';
 
 const Root = ({ children, initialState }) => {
   const store = createStore(
     reducers,
     initialState,
-    applyMiddleware(customReduxPromise)
+    applyMiddleware(async)
   );
   return <Provider store={store}>{children}</Provider>
 };
