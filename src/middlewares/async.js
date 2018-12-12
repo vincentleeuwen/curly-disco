@@ -14,7 +14,6 @@ export default ({ dispatch }) => next => action => {
   });
 }
 
-
 // boilerlate:
 // export default function({ dispatch }) {
 //   return function(next) {
