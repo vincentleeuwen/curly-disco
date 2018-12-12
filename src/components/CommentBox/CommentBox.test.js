@@ -7,7 +7,8 @@ describe('CommentBox UI', () => {
   let wrapper;
   
   beforeEach(() => {
-    wrapper = mount(<Root><CommentBox /></Root>);
+    const initialState = { auth: true };
+    wrapper = mount(<Root initialState={initialState}><CommentBox /></Root>);
   });
   
   afterEach(() => {
@@ -25,7 +26,8 @@ describe('CommentBox textarea state', () => {
   const newComment = 'foo';
 
   beforeEach(() => {
-    wrapper = mount(<Root><CommentBox /></Root>);
+    const initialState = { auth: true };
+    wrapper = mount(<Root initialState={initialState}><CommentBox /></Root>);
     // simulate change event on our textbox
     wrapper.find('textarea').simulate('change', { target: { value: newComment }});
     // force an update because setState() is async
